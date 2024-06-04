@@ -64,6 +64,11 @@ pub struct Header {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(rename = "x5t#S256")]
     pub x5t_s256: Option<String>,
+    /// Custom fields for supporting Coinbase's JWTs in API authorization
+    ///
+    /// https://docs.cdp.coinbase.com/advanced-trade/docs/rest-api-auth/
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub nonce: Option<String>,
 }
 
 impl Header {
@@ -80,6 +85,7 @@ impl Header {
             x5c: None,
             x5t: None,
             x5t_s256: None,
+            nonce: None,
         }
     }
 
